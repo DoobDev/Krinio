@@ -3,7 +3,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/doobdev/among-us-bot)](https://github.com/doobdev/among-us-bot/network/members)
 [![GitHub Stars](https://img.shields.io/github/stars/doobdev/among-us-bot)](https://github.com/doobdev/among-us-bot/stargazers)
 [![GitHub Licence](https://img.shields.io/github/license/doobdev/among-us-bot)](https://github.com/doobdev/among-us-bot/blob/master/LICENSE)
-[![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fdoobdev%2Famong-us-bot)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fdoobdev%2Famong-us-bot)
+[![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fdoobdev%2Famong-us-bot)](https://twitter.com/intent/tweet?text=What%20a%20super%20epic%20Among%20Us%20bot%20for%20Discord!%20Insane!!!%20Can%27t%20believe%20that%20@mmattbtw%20would%20code%20and%20make%20this,%20god%20he%20is%20so%20good%20at%20coding%20in%20Python:%20&url=https%3A%2F%2Fgithub.com%2Fdoobdev%2Famong-us-bot)
 ![Among Us Banner Image](https://img.itch.zone/aW1nLzE3MzAzNTQucG5n/original/6ZlfCk.png)
 *(doobdev and mmattbtw are not affiliated or partnered in anyway with the Among Us game, brand, and is not affiliated or partnered with Innersloth.)*
 
