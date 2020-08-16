@@ -96,6 +96,7 @@ async def help(ctx):
     embed.add_field(name='Ping', value='This shows the latency of the bot and the Discord Servers.')
     embed.add_field(name='cancelgame', value='Shows a message saying someone cancelled the lobby.')
     embed.add_field(name='FalseAlarm', value='You can blame someone for a false alarm.')
+    embed.add_field(name='StartGameNoPing', value='Starts the game, with no ping.')
 
     await ctx.send(embed=embed)
     
@@ -114,5 +115,19 @@ async def falsealarm(ctx):
     await channel.send(embed=embed)
 
     await ctx.send(embed=embed)
+
+@client.command(aliases=['noping', 'startnoping'])
+async def startgamenoping(ctx):
+
+    await ctx.channel.purge(limit=1)
+    embed = discord.Embed(title=f"{ctx.author} is starting a lobby!", description="Click the checkmark to ready up!", colour=discord.Color.blue())
+
+    await ctx.send('Game Starting!')
+    message = await ctx.send(embed=embed)
+
+    emojis = '✅'
+
+    for emoji in emojis:
+        await message.add_reaction(emoji)
 
 client.run(token)
