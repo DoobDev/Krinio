@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-token = input("Input your Discord Bot's token.")
+token = input("Input your Discord Bot's token.\n")
 
 client = commands.Bot(command_prefix = "!")
 
@@ -14,26 +14,48 @@ async def on_ready():
 
 
 # Error handling.
-@commands.Cog.listener()
-async def on_command_error(self, ctx, error):
-if isinstance(error, commands.MissingRequiredArgument):
-    embed = discord.Embed(title="Missing Requirement Error [DB10]", description="Pass in all required arguments.", colour=discord.Color.blue())
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        embed = discord.Embed(title="Missing Requirement Error [DB10]", description="Pass in all required arguments.", colour=discord.Color.blue())
 
-    embed.add_field(name="Docs", value="Check out the Docs for more info. - http://docs.doobbot.com/")
+        await ctx.send(embed=embed)
 
-    embed.set_thumbnail(url=doob_logo)
+
+    if isinstance(error, commands.MissingPermissions):
+        embed = discord.Embed(title="Missing Permissions Error [DB11]", description="You are not able to use this command because you do not have the required permissions.", colour=discord.Color.blue())
+
+        await ctx.send(embed=embed)
+
+# Ping command, gives latency of the bot to the user.
+@client.command()
+async def ping(ctx):
+    embed = discord.Embed(title="Pong!", description=":ping_pong:", colour=discord.Color.blue())
+
+    embed.add_field(name="The latency for Among Us Bot is...", value=f"{round(client.latency * 1000)} ms")
+
+
     await ctx.send(embed=embed)
 
+# Starts the game.
+@client.command(aliases=['start'])
+async def startgame(ctx):
 
-if isinstance(error, commands.MissingPermissions):
-    embed = discord.Embed(title="Missing Permissions Error [DB11]", description="You are not able to use this command because you do not have the required permissions.", colour=discord.Color.blue())
+    embed = discord.Embed(title="Someone is starting a lobby!", description="Click the checkmark to ready up!", colour=discord.Color.blue())
 
-    embed.add_field(name="Docs", value="Check out the Docs for more info. - http://docs.doobbot.com/")
+    embed.add_field(name='Players ready to play:', value="testing")
 
-    embed.set_thumbnail(url=doob_logo)
+    await message.add_reaction('✅')
     await ctx.send(embed=embed)
 
+# Help command
+@client.command(aliases=['commands'])
+async def help(ctx):
+    embed = discord.Embed(title='Among Us Bot Commands:', colour=discord.Color.blue())
 
-@client.command
+    embed.add_field(name='startgame', value='This command starts the game, and gives members the option to ready up!')
+    embed.add_field(name='Ping', value='This shows the latency of the bot and the Discord Servers.')
+
+    await ctx.send(embed=embed)
 
 client.run(token)
