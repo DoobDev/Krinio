@@ -1,9 +1,9 @@
 # Among Us Discord Bot.
-![GitHub Issues](https://github.com/doobdev/among-us-bot/issues)(https://img.shields.io/github/issues/doobdev/among-us-bot)
-![GitHub forks](https://github.com/doobdev/among-us-bot/network/members)(https://img.shields.io/github/forks/doobdev/among-us-bot)
-![GitHub Stars](https://github.com/doobdev/among-us-bot/stargazers)(https://img.shields.io/github/stars/doobdev/among-us-bot)
-![GitHub Licence](https://github.com/doobdev/among-us-bot/blob/master/LICENSE)(https://img.shields.io/github/license/doobdev/among-us-bot)
-![Tweet](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fdoobdev%2Famong-us-bot)(https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fdoobdev%2Famong-us-bot)
+![GitHub Issues](https://img.shields.io/github/issues/doobdev/among-us-bot)
+![GitHub forks](https://img.shields.io/github/forks/doobdev/among-us-bot)
+![GitHub Stars](https://img.shields.io/github/stars/doobdev/among-us-bot)
+![GitHub Licence](https://img.shields.io/github/license/doobdev/among-us-bot)
+![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fdoobdev%2Famong-us-bot)
 
 ![Among Us Banner Image](https://img.itch.zone/aW1nLzE3MzAzNTQucG5n/original/6ZlfCk.png)
 *(doobdev and mmattbtw are not affiliated or partnered in anyway with the Among Us game, brand, and is not affiliated or partnered with Innersloth.)*
@@ -26,4 +26,4 @@ Privated bot for now, hard coded channel ids, will be public hosted by me soon.
 Submit a [pull request!](https://github.com/doobdev/among-us-bot/pulls)
 
 ## Find another bug?
-Open an [issue!](https://github.com/doobdev/among-us-bot/issues/new)
+Open an [issue!](https://github.com/doobdev/among-us-bot/issues)
