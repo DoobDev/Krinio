@@ -42,6 +42,7 @@ async def ping(ctx):
 @client.command(aliases=['start'])
 async def startgame(ctx):
 
+    await ctx.channel.purge(limit=1)
     embed = discord.Embed(title=f"{ctx.author} is starting a lobby!", description="Click the checkmark to ready up!", colour=discord.Color.blue())
 
     await ctx.send('Game Starting! @everyone')
