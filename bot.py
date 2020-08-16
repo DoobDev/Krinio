@@ -82,7 +82,7 @@ async def code(ctx):
 
     embed = discord.Embed(title='The Code for the game is:')
 
-    embed.add_field(name='Code:', value=ctx.message.content.replace('!code ', ''))
+    embed.add_field(name='Code:', value=f"||{ctx.message.content.replace('!code ', '')}||")
 
     channel = client.get_channel(742889060179378217) # Code channel.
     await channel.purge(limit=1)
