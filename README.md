@@ -1,5 +1,6 @@
 # Among Us Discord Bot.
 ![Among Us Banner Image](https://img.itch.zone/aW1nLzE3MzAzNTQucG5n/original/6ZlfCk.png)
+*(doobdev and mmattbtw are not affiliated or partnered in anyway with the Among Us game, brand, and is not affiliated or partnered with Innersloth.)*
 
 Privated bot for now, hard coded channel ids, will be public hosted by me soon.
 
