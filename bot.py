@@ -1,4 +1,5 @@
 import discord
+import asyncio
 from discord.ext import commands
 
 from discord.ext.commands   import bot
@@ -93,6 +94,24 @@ async def help(ctx):
     embed.add_field(name='Code', value='This command gives the members the code to the Among Us lobby, posted in #code.')
     embed.add_field(name='startgame', value='This command starts the game, and gives members the option to ready up!')
     embed.add_field(name='Ping', value='This shows the latency of the bot and the Discord Servers.')
+    embed.add_field(name='cancelgame', value='Shows a message saying someone cancelled the lobby.')
+    embed.add_field(name='FalseAlarm', value='You can blame someone for a false alarm.')
+
+    await ctx.send(embed=embed)
+    
+@client.command(aliases=['cancel'])
+async def cancelgame(ctx):
+    embed = discord.Embed(title=f'{ctx.author} is cancelling the lobby', description='Go home.')
+
+    await ctx.send(embed=embed)
+
+@client.command()
+async def falsealarm(ctx):
+    embed = discord.Embed(title='False Alarm.', description=f'Blame {ctx.message.content.replace("!falsealarm ", "")}')
+
+    channel = client.get_channel(742889060179378217)
+    await channel.purge(limit=2)
+    await channel.send(embed=embed)
 
     await ctx.send(embed=embed)
 
