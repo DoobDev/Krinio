@@ -26,4 +26,4 @@ Privated bot for now, hard coded channel ids, will be public hosted by me soon.
 Submit a [pull request!](https://github.com/doobdev/among-us-bot/pulls)
 
 ## Find another bug?
-Open an [issue!](https://github.com/doobdev/among-us-bot/issues)
+Open an [issue!](https://github.com/doobdev/among-us-bot/issues/new)
