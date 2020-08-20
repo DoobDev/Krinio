@@ -6,6 +6,10 @@ from discord.ext.commands   import bot
 
 token = input("Input your Discord Bot's token.\n")
 
+generalid = input("Input your Discord Server's main/general channel id.\n")
+
+codeid = input("Input your Discord Server's code channel id.\n")
+
 client = commands.Bot(command_prefix = "!")
 
 client.remove_command("help")
@@ -63,7 +67,7 @@ async def on_reaction_add(reaction, user):
         return
 
     if emoji == '✅':
-        fixed_channel = client.get_channel(742888039872856067) # General / main chat channel ID
+        fixed_channel = client.get_channel(generalid) # General / main chat channel ID
         await fixed_channel.send(f'{user.mention} is ready to play! [{reaction.count - 1}/10]')
     
 @client.event
@@ -73,7 +77,7 @@ async def on_reaction_remove(reaction, user):
         return
 
     if emoji == '✅':
-        fixed_channel = client.get_channel(742888039872856067) # General / main chat channel ID
+        fixed_channel = client.get_channel(generalid) # General / main chat channel ID
         await fixed_channel.send(f'{user.mention} is no longer ready to play! [{reaction.count - 1}/10]')
 
 # Code command, gives the code to code channel. Usage is !code {insert code here}
@@ -85,7 +89,7 @@ async def code(ctx):
 
     embed.add_field(name='Code:', value=f"||{ctx.message.content.replace('!code ', '')}||")
 
-    channel = client.get_channel(742889060179378217) # Code channel.
+    channel = client.get_channel(codeid) # Code channel.
     await channel.purge(limit=1)
     await channel.send(embed=embed)
 
@@ -115,7 +119,7 @@ async def cancelgame(ctx):
 async def falsealarm(ctx):
     embed = discord.Embed(title='False Alarm.', description=f'Blame {ctx.message.content.replace("!falsealarm ", "")}')
 
-    channel = client.get_channel(742889060179378217) # Code channel.
+    channel = client.get_channel(codeid) # Code channel.
     await channel.purge(limit=2)
     await channel.send(embed=embed)
 
