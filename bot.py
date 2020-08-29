@@ -69,16 +69,6 @@ async def on_reaction_add(reaction, user):
     if emoji == '✅':
         fixed_channel = client.get_channel(generalid) # General / main chat channel ID
         await fixed_channel.send(f'{user.mention} is ready to play! [{reaction.count - 1}/10]')
-    
-@client.event
-async def on_reaction_remove(reaction, user):
-    emoji = reaction.emoji
-    if user.bot:
-        return
-
-    if emoji == '✅':
-        fixed_channel = client.get_channel(generalid) # General / main chat channel ID
-        await fixed_channel.send(f'{user.mention} is no longer ready to play! [{reaction.count - 1}/10]')
 
 # Code command, gives the code to code channel. Usage is !code {insert code here}
 @client.command()
