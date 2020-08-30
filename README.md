@@ -4,7 +4,6 @@
 [![GitHub Stars](https://img.shields.io/github/stars/doobdev/among-us-bot?style=for-the-badge)](https://github.com/doobdev/among-us-bot/stargazers)
 [![GitHub Licence](https://img.shields.io/github/license/doobdev/among-us-bot?style=for-the-badge)](https://github.com/doobdev/among-us-bot/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/702352937980133386?color=blue&logo=Discord&style=for-the-badge)](https://discord.gg/ryTYWjD)
-[![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fdoobdev%2Famong-us-bot?style=for-the-badge)](https://twitter.com/intent/tweet?text=What%20a%20super%20epic%20Among%20Us%20bot%20for%20Discord!%20Insane!!!%20Can%27t%20believe%20that%20@mmattbtw%20would%20code%20and%20make%20this,%20god%20he%20is%20so%20good%20at%20coding%20in%20Python:%20&url=https%3A%2F%2Fgithub.com%2Fdoobdev%2Famong-us-bot)
 ![Among Us Banner Image](https://img.itch.zone/aW1nLzE3MzAzNTQucG5n/original/6ZlfCk.png)
 
 *(doobdev and mmattbtw are not affiliated or partnered in anyway with the Among Us game, brand, and is not affiliated or partnered with Innersloth.)*
@@ -19,8 +18,7 @@ Privated bot for now, hard coded channel ids (no longer hard coded, but it still
 4. Finished! (Contact me for errors.)
 
 ## Known Bugs.
-1. If you react to any message in the server with a ✅, the bot will say you are ready in chat.
-2. Spamming is still an issue.
+1. Spamming is still an issue.
 
 ## Contribute Code?
 Submit a [pull request!](https://github.com/doobdev/among-us-bot/pulls)
