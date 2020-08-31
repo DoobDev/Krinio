@@ -11,7 +11,7 @@
 Privated bot for now, hard coded channel ids (no longer hard coded, but it still only works on 1 server. will make DB or something to make it public hosted by me.), will be public hosted by me soon.
 
 ## Example
-[![Example Gif](https://i.imgur.com/vItAZdF.gif)]
+![Example Gif](https://i.imgur.com/vItAZdF.gif)
 
 ## How to fork the bot to use it for your own use.
 
