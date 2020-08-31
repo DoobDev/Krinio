@@ -10,15 +10,21 @@
 
 Privated bot for now, hard coded channel ids (no longer hard coded, but it still only works on 1 server. will make DB or something to make it public hosted by me.), will be public hosted by me soon.
 
-## Example
-![Example Gif](https://i.imgur.com/vItAZdF.gif)
+## How to use the bot.
+![Example Gif](https://i.imgur.com/8HPH1HJ.gif)
+
+1. Setup the bot using the instructions below.
+2. Once you have the bot running, I would recoment running the "!help" command, which gives you all the commands.
+3. To start a game with a ping, do !start.
+4. To send the code to your code channel, do !code {code}
 
 ## How to fork the bot to use it for your own use.
 
 1. Either Fork the bot on GitHub, or clone it.
 2. Run `pip install -r requirements.txt` in your terminal, in the directory you installed the bot in.
-3. Run the bot and answer the questions it gives you. (Make sure you have a bot setup on [Discord's Developer Portal](https://discord.com/developers/applications))
-4. Finished! (Contact me for errors.)
+3. Edit channel ids on lines 59, 69, 79, and 108
+4. Run the bot. (Make sure you have a bot setup on [Discord's Developer Portal](https://discord.com/developers/applications))
+5. Finished! (Contact me for errors.)
 
 ## Known Bugs.
 1. Spamming is still an issue.
