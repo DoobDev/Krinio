@@ -91,6 +91,8 @@ async def help(ctx):
     embed.add_field(name='cancelgame', value='Shows a message saying someone cancelled the lobby.')
     embed.add_field(name='FalseAlarm', value='You can blame someone for a false alarm.')
     embed.add_field(name='StartGameNoPing', value='Starts the game, with no ping.')
+    embed.add_field(name='ImposterWon', value='!imposterwon {imposters}. Shows who the imposters were, and when they won!')
+    embed.add_field(name='CrewWon', value='!crewwon {imposters}. Shows that the crew won and who the imposters were.')
     await ctx.send(embed=embed)
 
 
@@ -121,5 +123,25 @@ async def startgamenoping(ctx):
     emojis = '✅'
     for emoji in emojis:
         await message.add_reaction(emoji)
+
+@client.command()
+async def crewwon(ctx):
+    await ctx.channel.purge(limit=1)
+    embed = discord.Embed(title='Imposters Lost!', colour=discord.Color.red())
+    embed.add_field(name="Imposters:", value=ctx.message.content.replace("!crewwon ", ""))
+    embed.add_field(name="Timestamp:", value=ctx.message.created_at, inline=True)
+    embed.set_thumbnail(url = "https://static.thenounproject.com/png/158126-200.png")
+    embed.set_footer(text=f"Reported By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
+    await ctx.send(embed=embed)
+
+@client.command()
+async def imposterwon(ctx):
+    await ctx.channel.purge(limit=1)
+    embed = discord.Embed(title='Congragulations Imposters!!', colour=discord.Color.gold())
+    embed.add_field(name="Imposters:", value=ctx.message.content.replace("!imposterwon ", ""))
+    embed.add_field(name="Timestamp:", value=ctx.message.created_at, inline=True)
+    embed.set_thumbnail(url = "https://image.flaticon.com/icons/png/512/419/419952.png")
+    embed.set_footer(text=f"Reported By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
+    await ctx.send(embed=embed)
 
 client.run(token)
