@@ -4,14 +4,21 @@ import discord
 import asyncio
 from discord.ext import commands
 from discord.ext.commands   import bot
+
 token = input("Input your Discord Bot's token.\n")
+
 client = commands.Bot(command_prefix = "!")
+
 client.remove_command("help")
+
+
 # Starts the bot, with a status.
 @client.event
 async def on_ready():
     print('Among Us Bot is online!')
     await client.change_presence(status = discord.Status.online, activity=discord.Game('!help for commands'))
+
+
 # Error handling.
 @client.event
 async def on_command_error(ctx, error):
@@ -21,12 +28,16 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
         embed = discord.Embed(title="Missing Permissions Error [DB11]", description="You are not able to use this command because you do not have the required permissions.", colour=discord.Color.blue())
         await ctx.send(embed=embed)
+
+
 # Ping command, gives latency of the bot to the user.
 @client.command()
 async def ping(ctx):
     embed = discord.Embed(title="Pong!", description=":ping_pong:", colour=discord.Color.blue())
     embed.add_field(name="The latency for Among Us Bot is...", value=f"{round(client.latency * 1000)} ms")
     await ctx.send(embed=embed)
+
+
 # Starts the game.
 @client.command(aliases=['start'])
 async def startgame(ctx):
@@ -37,6 +48,7 @@ async def startgame(ctx):
     emojis = '✅'
     for emoji in emojis:
         await message.add_reaction(emoji)
+
 # Reaction events
 @client.event
 async def on_reaction_add(reaction, user):
@@ -46,7 +58,8 @@ async def on_reaction_add(reaction, user):
     if emoji == '✅':
         fixed_channel = client.get_channel(742888039872856067) # General / main chat channel ID
         await fixed_channel.send(f'{user.mention} is ready to play! [{reaction.count - 1}/10]')
-    
+
+
 @client.event
 async def on_reaction_remove(reaction, user):
     emoji = reaction.emoji
@@ -55,6 +68,8 @@ async def on_reaction_remove(reaction, user):
     if emoji == '✅':
         fixed_channel = client.get_channel(742888039872856067) # General / main chat channel ID
         await fixed_channel.send(f'{user.mention} is no longer ready to play! [{reaction.count - 1}/10]')
+
+
 # Code command, gives the code to code channel. Usage is !code {insert code here}
 @client.command()
 async def code(ctx):
@@ -64,6 +79,8 @@ async def code(ctx):
     channel = client.get_channel(742889060179378217) # Code channel.
     await channel.purge(limit=1)
     await channel.send(embed=embed)
+
+
 # Help command
 @client.command(aliases=['commands'])
 async def help(ctx):
@@ -75,11 +92,15 @@ async def help(ctx):
     embed.add_field(name='FalseAlarm', value='You can blame someone for a false alarm.')
     embed.add_field(name='StartGameNoPing', value='Starts the game, with no ping.')
     await ctx.send(embed=embed)
+
+
 # Cancel game command, just cancels a lobby.
 @client.command(aliases=['cancel'])
 async def cancelgame(ctx):
     embed = discord.Embed(title=f'{ctx.author} is cancelling the lobby', description='Go home.')
     await ctx.send(embed=embed)
+
+
 # False Alarm command, puts a message in the code channel, and in the main chat that it was a false alarm.
 @client.command()
 async def falsealarm(ctx):
@@ -88,6 +109,8 @@ async def falsealarm(ctx):
     await channel.purge(limit=2)
     await channel.send(embed=embed)
     await ctx.send(embed=embed)
+
+
 # This is a copy paste of the start game, except without the @everyone ping.
 @client.command(aliases=['noping', 'startnoping'])
 async def startgamenoping(ctx):
