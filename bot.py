@@ -40,7 +40,6 @@ async def ping(ctx):
 
     embed.add_field(name="The latency for Among Us Bot is...", value=f"{round(client.latency * 1000)} ms")
 
-
     await ctx.send(embed=embed)
 
 # Starts the game.
@@ -68,10 +67,6 @@ async def on_reaction_add(reaction, user):
     if emoji == '✅':
         fixed_channel = client.get_channel(generalid) # General / main chat channel ID
         await fixed_channel.send(f'{user.mention} is ready to play! [{reaction.count - 1}/10]')
-async def load(ctx, extension):
-    print(f'Loaded {extension}')
-    client.load_extension(f'cogs.{extension}')
-    print(f'Loaded {extension}')
 
 # Code command, gives the code to code channel. Usage is !code {insert code here}
 @client.command()
@@ -113,6 +108,7 @@ async def falsealarm(ctx):
     embed = discord.Embed(title='False Alarm.', description=f'Blame {ctx.message.content.replace("!falsealarm ", "")}')
 
     channel = client.get_channel(codeid) # Code channel.
+
     await channel.purge(limit=2)
     await channel.send(embed=embed)
 
