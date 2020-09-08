@@ -1,5 +1,4 @@
-
-# Doob Dev 2020
+# Doob Dev 2020 - Privated Bot
 import discord
 import asyncio
 from discord.ext import commands
@@ -10,7 +9,6 @@ token = input("Input your Discord Bot's token.\n")
 client = commands.Bot(command_prefix = "!")
 
 client.remove_command("help")
-
 
 # Starts the bot, with a status.
 @client.event
@@ -42,7 +40,8 @@ async def ping(ctx):
 @client.command(aliases=['start'])
 async def startgame(ctx):
     await ctx.channel.purge(limit=1)
-    embed = discord.Embed(title=f"{ctx.author} is starting a lobby!", description="Click the checkmark to ready up!", colour=discord.Color.blue())
+    embed = discord.Embed(title=f"{ctx.author.name} is starting a lobby!", description="Click the checkmark to ready up!", colour=discord.Color.blue())
+    embed.set_footer(text=f"Started By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
     await ctx.send('Game Starting! @everyone')
     message = await ctx.send(embed=embed)
     emojis = '✅'
@@ -52,22 +51,28 @@ async def startgame(ctx):
 # Reaction events
 @client.event
 async def on_reaction_add(reaction, user):
-    emoji = reaction.emoji
-    if user.bot:
-        return
-    if emoji == '✅':
-        fixed_channel = client.get_channel(742888039872856067) # General / main chat channel ID
-        await fixed_channel.send(f'{user.mention} is ready to play! [{reaction.count - 1}/10]')
+    if reaction.message.author == "Among Us Bot#3079":
+        emoji = reaction.emoji
+        if user.bot:
+            return
+        if emoji == '✅':
+            fixed_channel = client.get_channel(742888039872856067) # General / main chat channel ID
+            await fixed_channel.send(f'{user.mention} is ready to play! [{reaction.count - 1}/10]')
+    else:
+        print("BRUH")
 
 
 @client.event
 async def on_reaction_remove(reaction, user):
-    emoji = reaction.emoji
-    if user.bot:
-        return
-    if emoji == '✅':
-        fixed_channel = client.get_channel(742888039872856067) # General / main chat channel ID
-        await fixed_channel.send(f'{user.mention} is no longer ready to play! [{reaction.count - 1}/10]')
+    if reaction.message.author == "Among Us Bot#3079":
+        emoji = reaction.emoji
+        if user.bot:
+            return
+        if emoji == '✅':
+            fixed_channel = client.get_channel(742888039872856067) # General / main chat channel ID
+            await fixed_channel.send(f'{user.mention} is no longer ready to play! [{reaction.count - 1}/10]')
+    else:
+        print("BRUH x2")
 
 
 # Code command, gives the code to code channel. Usage is !code {insert code here}
@@ -117,7 +122,8 @@ async def falsealarm(ctx):
 @client.command(aliases=['noping', 'startnoping'])
 async def startgamenoping(ctx):
     await ctx.channel.purge(limit=1)
-    embed = discord.Embed(title=f"{ctx.author} is starting a lobby!", description="Click the checkmark to ready up!", colour=discord.Color.blue())
+    embed = discord.Embed(title=f"{ctx.author.name} is starting a lobby!", description="Click the checkmark to ready up!", colour=discord.Color.blue())
+    embed.set_footer(text=f"Started By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
     await ctx.send('Game Starting!')
     message = await ctx.send(embed=embed)
     emojis = '✅'
