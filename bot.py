@@ -152,4 +152,11 @@ async def imposterwon(ctx):
     embed.set_footer(text=f"Reported By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
     await ctx.send(embed=embed)
 
+@client.command()
+async def credits(ctx):
+    embed=discord.Embed(title='This bot was created by:', colour=discord.Color.blue())
+    embed.add_field(name="mmatt#0001", value="", inline=True)
+    embed.set_thumbnail(url = "https://cdn.discordapp.com/avatars/308000668181069824/90f0120c5408f595953e035df9b453a4.webp?size=1024")
+    embed.set_footer(text='github.com/mmattbtw')
+
 client.run(token)
