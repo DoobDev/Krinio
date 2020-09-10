@@ -81,6 +81,7 @@ async def code(ctx):
     await ctx.channel.purge(limit=1)
     embed = discord.Embed(title='The Code for the game is:')
     embed.add_field(name='Code:', value=f"{ctx.message.content.replace('!code ', '')}")
+    embed.set_footer(text=f"Code By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
     channel = client.get_channel(742889060179378217) # Code channel.
     await channel.purge(limit=1)
     await channel.send(embed=embed)
