@@ -51,7 +51,7 @@ async def startgame(ctx):
 # Reaction events
 @client.event
 async def on_reaction_add(reaction, user):
-    if reaction.message.author == "Among Us Bot#3079":
+    if reaction.message.author.id == client.user.id:
         emoji = reaction.emoji
         if user.bot:
             return
@@ -64,7 +64,7 @@ async def on_reaction_add(reaction, user):
 
 @client.event
 async def on_reaction_remove(reaction, user):
-    if reaction.message.author == "Among Us Bot#3079":
+    if reaction.message.author.id == client.user.id:
         emoji = reaction.emoji
         if user.bot:
             return
