@@ -182,5 +182,6 @@ async def credits(ctx):
     embed.add_field(name="mmatt#0001", value="", inline=True)
     embed.set_thumbnail(url = "https://cdn.discordapp.com/avatars/308000668181069824/90f0120c5408f595953e035df9b453a4.webp?size=1024")
     embed.set_footer(text='github.com/mmattbtw')
+    await ctx.send(embed=embed)
 
 client.run(token)
