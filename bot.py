@@ -22,14 +22,15 @@ async def on_ready():
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         embed = discord.Embed(title="Missing Requirement Error [DB10]", description="Pass in all required arguments.", colour=discord.Color.blue())
-        await ctx.send(embed=embed).delete(delay=5)
+        await ctx.send(embed=embed, delete_after = 15)
     if isinstance(error, commands.MissingPermissions):
         embed = discord.Embed(title="Missing Permissions Error [DB11]", description="You are not able to use this command because you do not have the required permissions.", colour=discord.Color.blue())
-        await ctx.send(embed=embed).delete(delay=5)
+        await ctx.send(embed=embed, delete_after = 15)
+        
 
     if isinstance(error, commands.CommandOnCooldown):
         embed = discord.Embed(title="Cooldown", description="You are on cooldown! Please try again in {:.2f}s".format(error.retry_after))
-        await ctx.send(embed=embed).delete(delay=error.retry_after)
+        await ctx.send(embed=embed, delete_after = error.retry_after)
     else:
         raise error
 
