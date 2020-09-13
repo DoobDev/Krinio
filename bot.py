@@ -50,6 +50,7 @@ async def startgame(ctx):
 
 # Reaction events
 @client.event
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def on_reaction_add(reaction, user):
     if reaction.message.author.id == client.user.id:
         emoji = reaction.emoji
@@ -63,6 +64,7 @@ async def on_reaction_add(reaction, user):
 
 
 @client.event
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def on_reaction_remove(reaction, user):
     if reaction.message.author.id == client.user.id:
         emoji = reaction.emoji
@@ -77,6 +79,7 @@ async def on_reaction_remove(reaction, user):
 
 # Code command, gives the code to code channel. Usage is !code {insert code here}
 @client.command()
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def code(ctx):
     await ctx.channel.purge(limit=1)
     embed = discord.Embed(title='The Code for the game is:')
@@ -89,6 +92,7 @@ async def code(ctx):
 
 # Help command
 @client.command(aliases=['commands'])
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def help(ctx):
     embed = discord.Embed(title='Among Us Bot Commands:', colour=discord.Color.blue())
     embed.add_field(name='Code', value='This command gives the members the code to the Among Us lobby, posted in #code.')
@@ -105,6 +109,7 @@ async def help(ctx):
 
 # Cancel game command, just cancels a lobby.
 @client.command(aliases=['cancel'])
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def cancelgame(ctx):
     embed = discord.Embed(title=f'{ctx.author} is cancelling the lobby', description='Go home.')
     await ctx.send(embed=embed)
@@ -112,6 +117,7 @@ async def cancelgame(ctx):
 
 # False Alarm command, puts a message in the code channel, and in the main chat that it was a false alarm.
 @client.command()
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def falsealarm(ctx):
     embed = discord.Embed(title='False Alarm.', description=f'Blame {ctx.message.content.replace("!falsealarm ", "")}')
     channel = client.get_channel(742889060179378217) # Code channel.
@@ -122,6 +128,7 @@ async def falsealarm(ctx):
 
 # This is a copy paste of the start game, except without the @everyone ping.
 @client.command(aliases=['noping', 'startnoping'])
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def startgamenoping(ctx):
     await ctx.channel.purge(limit=1)
     embed = discord.Embed(title=f"{ctx.author.name} is starting a lobby!", description="Click the checkmark to ready up!", colour=discord.Color.blue())
@@ -133,6 +140,7 @@ async def startgamenoping(ctx):
         await message.add_reaction(emoji)
 
 @client.command()
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def crewwon(ctx):
     await ctx.channel.purge(limit=1)
     embed = discord.Embed(title='Imposters Lost!', colour=discord.Color.red())
@@ -143,6 +151,7 @@ async def crewwon(ctx):
     await ctx.send(embed=embed)
 
 @client.command()
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def imposterwon(ctx):
     await ctx.channel.purge(limit=1)
     embed = discord.Embed(title='Congragulations Imposters!!', colour=discord.Color.gold())
@@ -153,6 +162,7 @@ async def imposterwon(ctx):
     await ctx.send(embed=embed)
 
 @client.command()
+@commands.cooldown(1, 10, commands.BucketType.user)
 async def credits(ctx):
     embed=discord.Embed(title='This bot was created by:', colour=discord.Color.blue())
     embed.add_field(name="mmatt#0001", value="", inline=True)
