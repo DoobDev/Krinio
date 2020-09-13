@@ -61,6 +61,8 @@ async def on_command_error(ctx, error):
         embed = discord.Embed(title="Bot Missing Permissions [DB17]", description="Doob is missing permissions, that are needed to execute this command.")
         embed.set_thumbnail(url="https://www.flaticon.com/svg/static/icons/svg/745/745419.svg")
         await ctx.send(embed=embed, delete_after= 15)
+    else:
+        raise error
 
 # Ping command, gives latency of the bot to the user.
 @client.command()
