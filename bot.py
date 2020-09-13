@@ -156,6 +156,7 @@ async def help(ctx):
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def patreon(ctx):
     embed = discord.Embed(title="The developer's Patreon is avaliable at:", description="https://patreon.com/doobdev")
+    embed.set_thumbnail(url="https://cdn.vox-cdn.com/thumbor/a3z1idZDuso6ksgW6pDOZwCRJDw=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/9833961/patreon.jpg")
     embed.set_footer(text="mmatt thanks you! (doob luvs yuh)", icon_url="https://cdn.discordapp.com/avatars/308000668181069824/90f0120c5408f595953e035df9b453a4.webp?size=1024")
     await ctx.send(embed=embed)
 
