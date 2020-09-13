@@ -151,9 +151,9 @@ async def crewwon(ctx):
     await ctx.channel.purge(limit=1)
     embed = discord.Embed(title='Imposters Lost!', colour=discord.Color.red())
     embed.add_field(name="Imposters:", value=ctx.message.content.replace("!crewwon ", ""))
-    embed.add_field(name="Timestamp:", value=ctx.message.created_at, inline=True)
     embed.set_thumbnail(url = "https://static.thenounproject.com/png/158126-200.png")
     embed.set_footer(text=f"Reported By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
+    embed.timestamp(ctx.message.created_at)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -162,9 +162,9 @@ async def imposterwon(ctx):
     await ctx.channel.purge(limit=1)
     embed = discord.Embed(title='Congragulations Imposters!!', colour=discord.Color.gold())
     embed.add_field(name="Imposters:", value=ctx.message.content.replace("!imposterwon ", ""))
-    embed.add_field(name="Timestamp:", value=ctx.message.created_at, inline=True)
     embed.set_thumbnail(url = "https://image.flaticon.com/icons/png/512/419/419952.png")
     embed.set_footer(text=f"Reported By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
+    embed.timestamp(ctx.message.created_at)
     await ctx.send(embed=embed)
 
 @client.command()
