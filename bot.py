@@ -27,6 +27,11 @@ async def on_command_error(ctx, error):
         embed = discord.Embed(title="Missing Permissions Error [DB11]", description="You are not able to use this command because you do not have the required permissions.", colour=discord.Color.blue())
         await ctx.send(embed=embed)
 
+    if isinstance(error, commands.CommandOnCooldown):
+        embed = discord.Embed(title="Cooldown", description="You are on cooldown! Please try again in {:.2f}s".format(error.retry_after))
+        await ctx.send(embed=embed).delete(delay=error.retry_after)
+    else:
+        raise error
 
 # Ping command, gives latency of the bot to the user.
 @client.command()
