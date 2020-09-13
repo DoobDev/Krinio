@@ -109,7 +109,7 @@ async def help(ctx):
     embed.add_field(name='StartGameNoPing', value='Starts the game, with no ping.')
     embed.add_field(name='ImposterWon', value='!imposterwon {imposters}. Shows who the imposters were, and when they won!')
     embed.add_field(name='CrewWon', value='!crewwon {imposters}. Shows that the crew won and who the imposters were.')
-    embed.add_field(name="Patreon", value="Support the developer of the Among Us Bot on Patreon! https://patreon.com/doobdev", inline=True)
+    embed.add_field(name="Patreon", value="Support the developer of the Among Us Bot on Patreon! https://patreon.com/doobdev")
     embed.set_footer(text="This bot was made by: mmatt#0001", icon_url="https://cdn.discordapp.com/avatars/308000668181069824/90f0120c5408f595953e035df9b453a4.webp?size=1024")
     await ctx.send(embed=embed)
 
