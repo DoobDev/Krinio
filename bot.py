@@ -189,7 +189,7 @@ async def startgamenoping(ctx):
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def crewwon(ctx):
     await ctx.channel.purge(limit=1)
-    embed = discord.Embed(title='Imposters Lost!', colour=discord.Color.red(), timestamp=datetime.utcnow)
+    embed = discord.Embed(title='Imposters Lost!', colour=discord.Color.red(), timestamp=datetime.utcnow())
     embed.add_field(name="Imposters:", value=ctx.message.content.replace("!crewwon ", ""))
     embed.set_thumbnail(url = "https://static.thenounproject.com/png/158126-200.png")
     embed.set_footer(text=f"Reported By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
@@ -199,7 +199,7 @@ async def crewwon(ctx):
 @commands.cooldown(1, 10, commands.BucketType.user)
 async def imposterwon(ctx):
     await ctx.channel.purge(limit=1)
-    embed = discord.Embed(title='Congragulations Imposters!!', colour=discord.Color.gold(), timestamp=datetime.utcnow)
+    embed = discord.Embed(title='Congragulations Imposters!!', colour=discord.Color.gold(), timestamp=datetime.utcnow())
     embed.add_field(name="Imposters:", value=ctx.message.content.replace("!imposterwon ", ""))
     embed.set_thumbnail(url = "https://image.flaticon.com/icons/png/512/419/419952.png")
     embed.set_footer(text=f"Reported By: {ctx.author}", icon_url=ctx.message.author.avatar_url)
