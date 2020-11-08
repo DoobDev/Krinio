@@ -9,4 +9,4 @@
 
 
 ### Based off Doob Core. 
-> > > > > >  > > <img src="./images/doobcoreicon.png" alt="Doob Core Logo" width=50/>
+<img src="./images/doobcoreicon.png" alt="Doob Core Logo" width=50/>
