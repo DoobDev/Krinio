@@ -1,0 +1,194 @@
+from time import time
+from datetime import datetime, timedelta
+from typing import Optional
+from psutil import Process, virtual_memory
+from platform import python_version
+from apscheduler.triggers.cron import CronTrigger
+
+from discord import Activity, ActivityType, Embed, Member
+from discord import __version__ as discord_version
+from discord.ext.commands import Cog
+from discord.ext.commands import command, BucketType, cooldown
+from discord.utils import get
+
+from ..db import db # pylint: disable=relative-beyond-top-level
+
+owner_id = 308000668181069824
+
+class Meta(Cog):
+	def __init__(self, bot):
+		self.bot = bot
+
+		self.message = "playing @Krinio help | {users:,} members in {guilds:,} servers. Version - {VERSION}"
+
+		bot.scheduler.add_job(self.set, CronTrigger(second=0))
+
+	@property
+	def message(self):
+		return self._message.format(users=len(self.bot.users), guilds = len(self.bot.guilds), VERSION = self.bot.VERSION)
+
+	@message.setter
+	def message(self, value):
+		if value.split(" ")[0] not in ("playing", "watching", "listening", "streaming"):
+			raise ValueError("Invalid activity.")
+
+		self._message = value
+
+	async def set(self):
+		_type, _name = self.message.split(" ", maxsplit=1)
+		await self.bot.change_presence(activity=Activity(
+			name=_name,
+			type=getattr(ActivityType, _type, ActivityType.playing)
+		))
+
+	@command(name="setactivity", brief="Owner Only Command - Set the bot's activity")
+	async def set_activity_message(self, ctx, *, text: str):
+		"""Set the bot's `playing` or `watching`, etc status.\n`Owner` permission required."""
+		if ctx.author.id == owner_id:
+			self.message = text
+			await self.set()
+			await ctx.send(f"Bot Status has been updated to {text}")
+		else:
+			await ctx.send("You don't have permission to do that.")
+
+	@command(name="support", aliases=["supportserver"], brief="Get a link to the Krinio support server.")
+	async def support_server_link(self, ctx):
+		"""Gives a link to the Krinio Support Server where you can get help from the developer!"""
+		await ctx.send("Join the support server at: :link: https://discord.gg/hgQTTU7")
+
+	@command(name="invite", aliases=["invitebot", "inv", "botinvite"], brief="Gives a link to invite Krinio to your server.")
+	async def krinio_invite_link(self, ctx):
+		"""Gives you a link to invite Krinio to another server!"""
+		await ctx.send("You can invite the bot here! :link: <https://discord.com/api/oauth2/authorize?client_id=744377689095536750&permissions=519232&scope=bot>")
+
+	@command(name="ping", brief="Shows the bot's latency.")
+	@cooldown(1, 10, BucketType.user)
+	async def ping(self, ctx):
+		"""Ping Pong!~\nShows the bot latency and response time."""
+		start = time()
+		message = await ctx.send("Loading...")
+		end = time()
+		await message.edit(content=f"Pong! :ping_pong: Latency: {self.bot.latency*1000:,.0f} ms. Response time: {(end-start)*1000:,.0f} ms.")
+
+	@command(name="shutdown", brief="Owner Only Command to shutdown the bot and save the DB.")
+	async def shutdown(self, ctx):
+		"""Command to shutdown the bot and save it's database.\n`Owner` permission required"""
+		if ctx.author.id == owner_id:
+			await ctx.send("Shutting down")
+
+			db.commit()
+			self.bot.scheduler.shutdown()
+			await self.bot.logout()
+		else:
+			await ctx.send("You don't have permission to shutdown the bot.")
+
+	@command(name="update", brief="Owner Only Command to give a pretty embed for updates.")
+	async def update_command(self, ctx, *, update: str):
+		"""Command to give people updates on why bot was going down / brief patch notes\n`Owner` permission required"""
+
+		prefix = db.records("SELECT Prefix from guilds WHERE GuildID = ?", ctx.guild.id)
+
+		if ctx.author.id == owner_id:
+			with ctx.channel.typing():
+				await ctx.message.delete()
+				embed=Embed(title="Update:", description=update, colour=ctx.author.colour)
+				embed.set_author(name=f"All the patch notes for {self.bot.VERSION} available here.", url=f"https://github.com/doobdev/krinio/blob/master/CHANGELOG.md#v{self.bot.VERSION.replace('.', '')}")
+				embed.set_footer(text=f"Authored by: {ctx.author.display_name}", icon_url=ctx.author.avatar_url)
+				await ctx.send(embed=embed)
+		elif ctx.author.id != owner_id:
+			await ctx.send(f"You don't have permissions to give updates about Krinio\nType `{prefix[0][0]}help update` for more info.")
+
+	async def show_bot_info(self, ctx, patreon_status):
+		embed = Embed(title="Krinio Info", colour=ctx.author.colour, timestamp=datetime.utcnow())
+
+		bot_version = self.bot.VERSION
+
+		proc = Process()
+		with proc.oneshot():
+			uptime = timedelta(seconds=time()-proc.create_time())
+			cpu_time = timedelta(seconds=(cpu := proc.cpu_times()).system + cpu.user)
+			mem_total = virtual_memory().total / (1025**2)
+			mem_of_total = proc.memory_percent()
+			mem_usg = mem_total * (mem_of_total / 100)
+
+		fields = [("Name", "Krinio", False),
+					("Developers", "<@308000668181069824>, <@476188720521805825>", False),
+					("Krinio's Server Count", f"{str(len(self.bot.guilds))}", True),
+					("Krinio's Member Count", f"{str(len(self.bot.users))}", True),
+					("The ping for Krinio is...", f" :ping_pong: {round(self.bot.latency * 1000)} ms", False),
+					("Python Version", python_version(), True),
+					("Uptime", uptime, True),
+					("CPU Time", cpu_time, True),
+					("Memory Usage", f"{mem_usg:,.3f} MiB / {mem_total:,.0f} MiB ({mem_of_total:.0f}%)", True),
+					("Library", f"discord.py {discord_version}", True),
+					("Bot Version", f"{self.bot.VERSION} - [Changelog](https://github.com/doobdev/Krinio/blob/master/CHANGELOG.md#v{bot_version.replace('.', '')})", True),
+					("Top.gg Link", "https://top.gg/bot/680606346952966177", False),
+					("Invite Link", "[Invite Link Here](https://discordapp.com/oauth2/authorize?client_id=680606346952966177&scope=bot&permissions=271674430)", True),
+					("GitHub Repository", "[Click Here](https://github.com/doobdev/Krinio)", True)]
+
+		for name, value, inline in fields:
+			embed.add_field(name=name, value=value, inline=inline)
+
+		embed.set_thumbnail(url=ctx.guild.me.avatar_url)
+		embed.set_footer(text=f"{ctx.author.name} requested Krinio's information", icon_url=ctx.author.avatar_url)
+
+		if patreon_status == True:
+			embed.add_field(name="Patreon", value=f"Thanks for [Donating](https://patreon.com/doobdev) {ctx.author.display_name}! :white_check_mark:", inline=False)
+			await ctx.send(embed=embed)
+
+		if patreon_status == False:
+			embed.add_field(name="Patreon", value="[Click Here for Patreon](https://patreon.com/doobdev)", inline=False)
+			await ctx.send(embed=embed)
+
+	@command(name="info", aliases=["botinfo"], brief="Gives basic info about Krinio.")
+	async def show_bot_info_command(self, ctx):
+		"""Gives basic info about Krinio."""
+
+		homeGuild = self.bot.get_guild(702352937980133386)
+		patreonRole = get(homeGuild.roles, id=757041749716893739)
+
+		member = []
+
+		for pledger in homeGuild.members:
+			if pledger == ctx.author:
+				member = pledger
+
+		if ctx.author in homeGuild.members:
+			if patreonRole in member.roles:
+				await self.show_bot_info(ctx, patreon_status=True)
+
+			else:
+				await self.show_bot_info(ctx, patreon_status=False)
+
+		else:
+			await self.show_bot_info(ctx, patreon_status=False)
+
+	@command(name="patreon", aliases=["donate", "donation"], brief="Show support to Doob Dev!")
+	async def patreon_link(self, ctx):
+		"""Gives a link to the Patreon for Krinio!\nWe apprecieate your support!~"""
+		homeGuild = self.bot.get_guild(702352937980133386)
+		patreonRole = get(homeGuild.roles, id=757041749716893739)
+
+		member = []
+
+		for pledger in homeGuild.members:
+			if pledger == ctx.author:
+				member = pledger
+
+		if ctx.author in homeGuild.members:
+			if patreonRole in member.roles:
+				await ctx.send(f"Thanks for supporting {ctx.author.mention}!\n<https://patreon.com/doobdev>")
+
+			else:
+				await ctx.send("You can support Doob Dev by subscribing at <https://patreon.com/doobdev>!")
+
+		else:
+			await ctx.send("You can support Doob Dev by subscribing at <https://patreon.com/doobdev>!")
+
+	@Cog.listener()
+	async def on_ready(self):
+		if not self.bot.ready:
+			self.bot.cogs_ready.ready_up("meta")
+
+def setup(bot):
+	bot.add_cog(Meta(bot))

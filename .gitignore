@@ -1,1 +1,6 @@
-/.theia
+__pycache__
+lib/bot/token.txt
+*.db
+*.db-journal
+.env
+.idea
