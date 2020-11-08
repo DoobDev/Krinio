@@ -57,7 +57,7 @@ class Meta(Cog):
 		await ctx.send("Join the support server at: :link: https://discord.gg/hgQTTU7")
 
 	@command(name="invite", aliases=["invitebot", "inv", "botinvite"], brief="Gives a link to invite Krinio to your server.")
-	async def Krinio_invite_link(self, ctx):
+	async def krinio_invite_link(self, ctx):
 		"""Gives you a link to invite Krinio to another server!"""
 		await ctx.send("You can invite the bot here! :link: <https://discord.com/api/oauth2/authorize?client_id=744377689095536750&permissions=519232&scope=bot>")
 
