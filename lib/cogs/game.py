@@ -1,7 +1,7 @@
 from discord import Embed
 
 from discord.ext.commands import Cog
-from discord.ext.commands import command, cooldown, BucketType
+from discord.ext.commands import command, cooldown, BucketType, has_permissions
 
 from discord.ext import menus
 
@@ -57,6 +57,17 @@ class Game(Cog):
         await m.start(ctx)
 
         await ctx.send(f"{ping[0]} Game is starting!~")
+
+    @command(name="startgamenoping", aliases=["noping", "startnoping"], brief="Lets the user start a game without a ping.")
+    @cooldown(1, 4, BucketType.user)
+    @has_permissions(mention_everyone = True)
+    async def start_game_no_pint(self, ctx):
+        """Starts a game that lets people ready up without a ping!"""
+
+        m = GameMenu(clear_reactions_after=True)
+        await m.start(ctx)
+
+        await ctx.send(f"Game is starting!~")
 
     @Cog.listener()
     async def on_ready(self):
