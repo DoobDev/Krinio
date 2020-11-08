@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS guilds(
     LogChannel text,
     CodeChannel text,
     ReadyUpChannel text,
-    Ping text DEFAULT "@here"
+    Ping text DEFAULT "@here",
+    MatchHistory text
 );
 
 CREATE TABLE IF NOT EXISTS users(

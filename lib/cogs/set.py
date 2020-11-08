@@ -41,7 +41,7 @@ class Set(Cog):
 			db.commit()
 			await ctx.send(f"Code channel set to <#{channel.id}>")
 
-	@command(name="setreadyupchannel", aliases=["sruc", "readyupchannel", "setreadyup", "src", "setreadychannel", "readychannel", "setready"], brief="Set the server's code channel.")
+	@command(name="setreadyupchannel", aliases=["sruc", "readyupchannel", "setreadyup", "src"], brief="Set the server's code channel.")
 	@has_permissions(manage_guild=True)
 	async def set_ready_channel(self, ctx, *, channel: Optional[TextChannel]):
 		"""Sets the ready up channel for the server.\n`Manage Server` permission required."""
@@ -55,6 +55,21 @@ class Set(Cog):
 			db.execute("UPDATE guilds SET ReadyUpChannel = ? WHERE GuildID = ?", str(channel.id), ctx.guild.id)
 			db.commit()
 			await ctx.send(f"Code channel set to <#{channel.id}>")
+
+	@command(name="setmatchfeedchannel", aliases=["smfc", "matchfeedchannel", "setmatchfeed"], brief="Set the server's match feed channel.")
+	@has_permissions(manage_guild=True)
+	async def set_feed_channel(self, ctx, *, channel: Optional[TextChannel]):
+		"""Sets the ready up channel for the server.\n`Manage Server` permission required."""
+		current_channel = db.records("SELECT MatchHistory FROM guilds WHERE GuildID = ?", ctx.guild.id)
+		prefix = db.records("SELECT Prefix from guilds WHERE GuildID = ?", ctx.guild.id)
+
+		if channel == None:
+			await ctx.send(f"The current setting for the Match Feed Channel is currently: <#{current_channel[0][0]}>\nTo change it, type `{prefix[0][0]}setmatchfeedchannel #<log channel>`")
+
+		else:
+			db.execute("UPDATE guilds SET MatchHistory = ? WHERE GuildID = ?", str(channel.id), ctx.guild.id)
+			db.commit()
+			await ctx.send(f"Match Feed channel set to <#{channel.id}>")
 
 	@Cog.listener()
 	async def on_ready(self):
