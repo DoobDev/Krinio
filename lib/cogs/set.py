@@ -73,18 +73,18 @@ class Set(Cog):
 
 	@command(name="setping", aliases=["sp", "pingsetting"], brief="Set the server's ping channel.")
 	@has_permissions(manage_guild=True)
-	async def set_ping(self, ctx, *, channel: Optional[Role]):
-		"""Sets the ready up channel for the server.\n`Manage Server` permission required."""
-		current_channel = db.records("SELECT Ping FROM guilds WHERE GuildID = ?", ctx.guild.id)
+	async def set_ping(self, ctx, *, role: Optional[Role]):
+		"""Sets the ping role for the server.\n`Manage Server` permission required."""
+		current_role = db.records("SELECT Ping FROM guilds WHERE GuildID = ?", ctx.guild.id)
 		prefix = db.records("SELECT Prefix from guilds WHERE GuildID = ?", ctx.guild.id)
 
-		if channel == None:
-			await ctx.send(f"The current setting for the Ping is currently: ```@{current_channel[0][0]}```\nTo change it, type `{prefix[0][0]}setping @Role`")
+		if role == None:
+			await ctx.send(f"The current setting for the Ping is currently: ```@{current_role[0][0]}```\nTo change it, type `{prefix[0][0]}setping @Role`")
 
 		else:
-			db.execute("UPDATE guilds SET Ping = ? WHERE GuildID = ?", str(channel.id), ctx.guild.id)
+			db.execute("UPDATE guilds SET Ping = ? WHERE GuildID = ?", str(role.id), ctx.guild.id)
 			db.commit()
-			await ctx.send(f"Ping Role set to <{channel.name}>")
+			await ctx.send(f"Ping Role set to <{role.name}>")
 
 	@Cog.listener()
 	async def on_ready(self):
