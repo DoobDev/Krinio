@@ -56,7 +56,7 @@ class Game(Cog):
         m = GameMenu(clear_reactions_after=True)
         await m.start(ctx)
 
-        await ctx.send(f"<@!{ping[0]}> Game is starting!~")
+        await ctx.send(f"<@&{ping[0]}> Game is starting!~")
 
     @command(name="startgamenoping", aliases=["noping", "startnoping"], brief="Lets the user start a game without a ping.")
     @cooldown(1, 4, BucketType.user)

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS guilds(
     LogChannel text,
     CodeChannel text,
     ReadyUpChannel text,
-    Ping text DEFAULT "@here",
+    Ping text DEFAULT "None, set the ping by doing k!setping",
     MatchHistory text
 );
 
