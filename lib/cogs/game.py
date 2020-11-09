@@ -23,7 +23,7 @@ class GameMenu(menus.Menu):
         reaction = get(message.reactions, emoji=payload.emoji.name)
         await self.message.edit(content=f"{reaction.count - 1}/10 ready.")
         if reaction and reaction.count >= 10:
-            await message.clear_reactions()
+            self.stop()
 
     @menus.button('\N{BLACK SQUARE FOR STOP}\ufe0f')
     async def on_stop(self, payload):

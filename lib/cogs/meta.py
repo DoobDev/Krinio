@@ -59,7 +59,7 @@ class Meta(Cog):
 	@command(name="invite", aliases=["invitebot", "inv", "botinvite"], brief="Gives a link to invite Krinio to your server.")
 	async def krinio_invite_link(self, ctx):
 		"""Gives you a link to invite Krinio to another server!"""
-		await ctx.send("You can invite the bot here! :link: <https://discord.com/api/oauth2/authorize?client_id=744377689095536750&permissions=519232&scope=bot>")
+		await ctx.send("You can invite the bot here! :link: <https://discord.com/oauth2/authorize?client_id=744377689095536750&scope=bot&permissions=271674430>")
 
 	@command(name="ping", brief="Shows the bot's latency.")
 	@cooldown(1, 10, BucketType.user)
@@ -112,7 +112,7 @@ class Meta(Cog):
 			mem_usg = mem_total * (mem_of_total / 100)
 
 		fields = [("Name", "Krinio", False),
-					("Developers", "<@308000668181069824>, <@476188720521805825>", False),
+					("Developers", "<@308000668181069824>", False),
 					("Krinio's Server Count", f"{str(len(self.bot.guilds))}", True),
 					("Krinio's Member Count", f"{str(len(self.bot.users))}", True),
 					("The ping for Krinio is...", f" :ping_pong: {round(self.bot.latency * 1000)} ms", False),
@@ -122,8 +122,8 @@ class Meta(Cog):
 					("Memory Usage", f"{mem_usg:,.3f} MiB / {mem_total:,.0f} MiB ({mem_of_total:.0f}%)", True),
 					("Library", f"discord.py {discord_version}", True),
 					("Bot Version", f"{self.bot.VERSION} - [Changelog](https://github.com/doobdev/Krinio/blob/master/CHANGELOG.md#v{bot_version.replace('.', '')})", True),
-					("Top.gg Link", "https://top.gg/bot/680606346952966177", False),
-					("Invite Link", "[Invite Link Here](https://discordapp.com/oauth2/authorize?client_id=680606346952966177&scope=bot&permissions=271674430)", True),
+					("Top.gg Link", "https://top.gg/bot/744377689095536750", False),
+					("Invite Link", "[Invite Link Here](https://discord.com/oauth2/authorize?client_id=744377689095536750&scope=bot&permissions=271674430)", True),
 					("GitHub Repository", "[Click Here](https://github.com/doobdev/Krinio)", True)]
 
 		for name, value, inline in fields:
