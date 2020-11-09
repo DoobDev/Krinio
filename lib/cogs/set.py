@@ -84,7 +84,7 @@ class Set(Cog):
 		else:
 			db.execute("UPDATE guilds SET Ping = ? WHERE GuildID = ?", str(channel.id), ctx.guild.id)
 			db.commit()
-			await ctx.send(f"Match Feed channel set to <#{channel.id}>")
+			await ctx.send(f"Ping Role set to <{channel.name}>")
 
 	@Cog.listener()
 	async def on_ready(self):
