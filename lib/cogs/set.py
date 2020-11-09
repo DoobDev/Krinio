@@ -1,4 +1,4 @@
-from discord import Embed, TextChannel
+from discord import Embed, TextChannel, Role
 
 from discord.ext.commands import Cog
 from discord.ext.commands import command, cooldown, BucketType, has_permissions, bot_has_permissions
@@ -73,7 +73,7 @@ class Set(Cog):
 
 	@command(name="setping", aliases=["sp", "pingsetting"], brief="Set the server's ping channel.")
 	@has_permissions(manage_guild=True)
-	async def set_ping(self, ctx, *, channel: Optional[str]):
+	async def set_ping(self, ctx, *, channel: Optional[Role]):
 		"""Sets the ready up channel for the server.\n`Manage Server` permission required."""
 		current_channel = db.records("SELECT Ping FROM guilds WHERE GuildID = ?", ctx.guild.id)
 		prefix = db.records("SELECT Prefix from guilds WHERE GuildID = ?", ctx.guild.id)
