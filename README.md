@@ -1,4 +1,4 @@
-# Krinio
+# Krinio <img src="./images/temp logo.png" alt="Temp Krinio Logo" width=25/>
 ### An Among Us Discord Bot.
 
 
