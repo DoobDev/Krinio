@@ -1,4 +1,6 @@
 # All of this is out of date, and the bot has gotten rewritten.
+## Will be deleted in 7 days as of 11/8/2020
+### Will be moved to a seperate repository
 
 # Among Us Discord Bot.
 [![GitHub Issues](https://img.shields.io/github/issues/doobdev/among-us-bot?style=for-the-badge)](https://github.com/doobdev/among-us-bot/issues)
