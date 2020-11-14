@@ -49,6 +49,7 @@ class Game(Cog):
 
     @command(name="startgame", aliases=["start"], brief="Lets the user start a game.")
     @cooldown(1, 4, BucketType.user)
+    @has_permissions(mention_everyone = True)
     async def start_game(self, ctx):
         """Starts a game that lets people ready up!"""
         ping = db.record("SELECT Ping from guilds WHERE GuildID = ?", ctx.guild.id)
@@ -60,7 +61,6 @@ class Game(Cog):
 
     @command(name="startgamenoping", aliases=["noping", "startnoping"], brief="Lets the user start a game without a ping.")
     @cooldown(1, 4, BucketType.user)
-    @has_permissions(mention_everyone = True)
     async def start_game_no_pint(self, ctx):
         """Starts a game that lets people ready up without a ping!"""
 

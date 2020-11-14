@@ -4,3 +4,4 @@ lib/bot/token.txt
 *.db-journal
 .env
 .idea
+pythonenv3.8
