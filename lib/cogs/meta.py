@@ -82,6 +82,26 @@ class Meta(Cog):
 		else:
 			await ctx.send("You don't have permission to shutdown the bot.")
 
+	@command(name="restart", brief="Owner Only Command to restart the bot.")
+	async def restart(self, ctx):
+		"""Command to restart, and update the bot to its latest version.\n`Owner` permission required"""
+		if ctx.author.id == owner_id:
+			await ctx.send("Restarting...")
+
+			db.commit()
+			self.bot.scheduler.shutdown()
+			await self.bot.logout()
+
+			print("Fetching latest version from doobdev/doob@master")
+			os.system("git pull origin master")
+			print("Installing requirements.txt")
+			os.system("python3.8 -m pip install -r requirements.txt")
+			print("Starting bot.")
+			os.system("python3.8 launcher.py")
+
+		else:
+			await ctx.send("You don't have permission to shutdown the bot.")
+
 	@command(name="update", brief="Owner Only Command to give a pretty embed for updates.")
 	async def update_command(self, ctx, *, update: str):
 		"""Command to give people updates on why bot was going down / brief patch notes\n`Owner` permission required"""
