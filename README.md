@@ -1,6 +1,5 @@
-# Krinio <img src="https://github.com/DoobDev/Krinio/raw/master/images/temp%20logo.png" alt="Temp Krinio Logo" width=25/>
+# Krinio <img src="https://github.com/DoobDev/Krinio/raw/master/images/temp%20logo.png" alt="Temp Krinio Logo" width=25/> [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ### An Among Us Discord Bot.
-
 
 ## Commands:
 k!crewwon {imposters} - Shows that the crew won and the imposters that were playing
