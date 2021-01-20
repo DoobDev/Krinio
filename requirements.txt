@@ -3,7 +3,7 @@
 # krinio/lib/bot/__init__.py: 4
 # krinio/lib/cogs/meta.py: 6
 # krinio/lib/db/db.py: 4
-APScheduler == 3.6.3
+APScheduler == 3.7.0
 
 # krinio/lib/bot/__init__.py: 9
 # krinio/lib/cogs/game.py: 4,6,8
