@@ -27,7 +27,7 @@ psutil == 5.8.0
 # Krinio/lib/bot/__init__.py: 17
 # Krinio/lib/cogs/servercount.py: 6
 # Krinio/lib/cogs/stat.py: 6
-python_dotenv == 0.15.0
+python_dotenv == 0.16.0
 
 # Krinio/lib/cogs/stat.py: 3
 statcord.py == 3.0.8
