@@ -22,7 +22,7 @@ dblpy == 0.4.0
 discord.py == 1.6.0
 
 # Krinio/lib/cogs/meta.py: 4
-psutil == 5.7.2
+psutil == 5.8.0
 
 # Krinio/lib/bot/__init__.py: 17
 # Krinio/lib/cogs/servercount.py: 6
