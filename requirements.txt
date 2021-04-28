@@ -32,4 +32,4 @@ python_dotenv == 0.17.0
 # Krinio/lib/cogs/stat.py: 3
 statcord.py == 3.1.0
 
-black==21.4b0
+black==21.4b1
