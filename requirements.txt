@@ -19,7 +19,7 @@ dblpy == 0.4.0
 # Krinio/lib/cogs/set.py: 4
 # Krinio/lib/cogs/stat.py: 1
 # Krinio/lib/cogs/welcome.py: 1
-discord.py == 1.7.1
+discord.py == 1.7.2
 
 # Krinio/lib/cogs/meta.py: 4
 psutil == 5.8.0
