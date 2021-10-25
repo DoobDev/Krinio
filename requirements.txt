@@ -3,7 +3,7 @@
 # Krinio/lib/bot/__init__.py: 4
 # Krinio/lib/cogs/meta.py: 6
 # Krinio/lib/db/db.py: 4
-APScheduler == 3.8.0
+APScheduler == 3.8.1
 
 # Krinio/lib/cogs/servercount.py: 1
 dblpy == 0.4.0
